@@ -1,2 +1,16 @@
-import React from "react";
-const CountryContext = React.createContext({});
+import React, { useState } from "react";
+const Context = React.createContext({});
+
+export function CountryContextProvider({ children }) {
+  const [darkMode, setDarkMode] = useState(false);
+  return (
+    <Context.Provider
+      value={{
+        darkMode,
+        setDarkMode,
+      }}
+    >
+      {children}
+    </Context.Provider>
+  );
+}

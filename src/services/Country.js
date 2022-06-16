@@ -6,7 +6,7 @@ export const getAllCountriesAPI = async () => {
     const data = await response.json();
     return data;
   } catch (error) {
-    return error;
+    throw error;
   }
 };
 
@@ -16,7 +16,7 @@ export const getCoutryByName = async (name) => {
     const data = await response.json();
     return data;
   } catch (error) {
-    return error;
+    throw error;
   }
 };
 
@@ -26,6 +26,6 @@ export const getCoutryByRegion = async (region) => {
     const data = await response.json();
     return data;
   } catch (error) {
-    return error;
+    throw error;
   }
 };
