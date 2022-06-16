@@ -28,7 +28,11 @@ const Countries = () => {
     getAllCountries();
   }, []);
 
-  return <div>Countries</div>;
+  return (
+    <div className="container">
+      <div className="container__country"></div>
+    </div>
+  );
 };
 
 export default Countries;
