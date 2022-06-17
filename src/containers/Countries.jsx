@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { getAllCountriesAPI } from "../services/Country";
 
+import "../styles/containers/Countries.css";
+
 const Countries = () => {
   const [countries, setCountries] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -30,7 +32,28 @@ const Countries = () => {
 
   return (
     <div className="container">
-      <div className="container__country"></div>
+      {countries?.map((country) => (
+        <div className="container__country">
+          <img src={country.flags.png} alt={country.name} loading="lazy" />
+          <div className="container__country-data">
+            <h3>{country.name.common}</h3>
+            <p>
+              Population:{" "}
+              <span>
+                {country.population
+                  .toString()
+                  .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+              </span>
+            </p>
+            <p>
+              Region: <span>{country.region}</span>
+            </p>
+            <p>
+              Capital: <span>{country.capital}</span>
+            </p>
+          </div>
+        </div>
+      ))}
     </div>
   );
 };
