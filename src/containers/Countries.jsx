@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { getAllCountriesAPI } from "../services/Country";
+import searchIcon from "../assets/images/search.svg";
 
 import "../styles/containers/Countries.css";
 
@@ -32,6 +33,19 @@ const Countries = () => {
 
   return (
     <div className="container">
+      <div className="container__search">
+        <input type="text" placeholder="Search for a country" />
+        <img src={searchIcon} alt="search icon" />
+      </div>
+      <div className="container__select">
+        <select>
+          <option disabled>Filter by Region</option>
+          <option>Africa</option>
+          <option>America</option>
+          <option>Europe</option>
+          <option>Oceania</option>
+        </select>
+      </div>
       {countries?.map((country) => (
         <div className="container__country">
           <img src={country.flags.png} alt={country.name} loading="lazy" />

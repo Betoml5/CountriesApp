@@ -33,3 +33,40 @@
 .container__country-data span {
   font-weight: normal;
 }
+
+.container__search {
+  display: flex;
+  width: 100%;
+  flex-direction: row-reverse;
+  align-self: center;
+  justify-content: space-evenly;
+  padding: 16px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+.container__search input {
+  border: none;
+  outline: none;
+}
+
+.container__select select {
+  border: none;
+  width: 70%;
+  padding: 18px;
+  font-weight: bold;
+  outline: none;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+.container__select option {
+  border: none;
+}
+
+.container__search input::placeholder {
+  color: hsl(0, 0%, 52%);
+}
+
+.container__search img {
+  width: 20px;
+  height: 20px;
+}
