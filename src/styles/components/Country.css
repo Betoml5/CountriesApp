@@ -1,0 +1,24 @@
+.countryDetails__container {
+  padding: 20px;
+}
+
+.countryDetails__container-backBtn {
+  display: flex;
+  align-items: center;
+  width: fit-content;
+
+  margin-bottom: 56px;
+
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+  padding: 10px 40px;
+}
+
+.countryDetails__container-backBtn img {
+  width: 25px;
+  height: 25px;
+  margin-right: 12px;
+}
+
+.countryDetails__container-backBtn p {
+  font-size: 1.4rem;
+}

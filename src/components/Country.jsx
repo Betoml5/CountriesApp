@@ -3,6 +3,8 @@ import { useEffect } from "react";
 import { useState } from "react";
 import { useParams } from "react-router-dom";
 import { getCountryByCodeAPI } from "../services/Country";
+import arrowBackIcon from "../assets/images/back.png";
+import "../styles/components/Country.css";
 
 const Country = () => {
   const [country, setCountry] = useState({});
@@ -20,7 +22,7 @@ const Country = () => {
         return;
       }
       console.log(response);
-      setCountry(response);
+      setCountry(response[0]);
     } catch (error) {
       setLoading(false);
       setError(true);
@@ -32,7 +34,24 @@ const Country = () => {
     getCountry();
   }, []);
 
-  return <div>Country</div>;
+  return (
+    <div className="countryDetails__container">
+      <div className="countryDetails__container-backBtn">
+        <img src={arrowBackIcon} alt="arrow-back" />
+        <p>Back</p>
+      </div>
+
+      <div className="countryDetails__container-data">
+        <img src={country.flags.png} alt={country.name.common} />
+        <div>
+          <h3>{country.name.common}</h3>
+          <div>
+            <p>Native Name: {country.name.nativeName.deu.common}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
 };
 
 export default Country;
