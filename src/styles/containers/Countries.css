@@ -6,6 +6,15 @@
   padding: 20px;
 }
 
+.country__link {
+  text-decoration: none;
+  color: #000;
+}
+
+.country__link:visited {
+  color: #000;
+}
+
 .container__country {
   border-radius: 4px;
   box-shadow: 0px 20px 20px rgba(0, 0, 0, 0.1);
@@ -60,6 +69,7 @@
 
 .container__select option {
   border: none;
+  outline: none;
 }
 
 .container__search input::placeholder {

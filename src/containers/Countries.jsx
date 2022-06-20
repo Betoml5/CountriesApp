@@ -3,6 +3,7 @@ import { getAllCountriesAPI } from "../services/Country";
 import searchIcon from "../assets/images/search.svg";
 
 import "../styles/containers/Countries.css";
+import { Link } from "react-router-dom";
 
 const Countries = () => {
   const [countries, setCountries] = useState([]);
@@ -47,26 +48,28 @@ const Countries = () => {
         </select>
       </div>
       {countries?.map((country) => (
-        <div className="container__country">
-          <img src={country.flags.png} alt={country.name} loading="lazy" />
-          <div className="container__country-data">
-            <h3>{country.name.common}</h3>
-            <p>
-              Population:{" "}
-              <span>
-                {country.population
-                  .toString()
-                  .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
-              </span>
-            </p>
-            <p>
-              Region: <span>{country.region}</span>
-            </p>
-            <p>
-              Capital: <span>{country.capital}</span>
-            </p>
+        <Link to={`/country/${country.cca2}`} className="country__link">
+          <div className="container__country">
+            <img src={country.flags.png} alt={country.name} loading="lazy" />
+            <div className="container__country-data">
+              <h3>{country.name.common}</h3>
+              <p>
+                Population:{" "}
+                <span>
+                  {country.population
+                    .toString()
+                    .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+                </span>
+              </p>
+              <p>
+                Region: <span>{country.region}</span>
+              </p>
+              <p>
+                Capital: <span>{country.capital}</span>
+              </p>
+            </div>
           </div>
-        </div>
+        </Link>
       ))}
     </div>
   );

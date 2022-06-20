@@ -6,7 +6,7 @@ const Header = () => {
   return (
     <header className="header">
       <div className="header__container">
-        <h3>Where in the world</h3>
+        <h3>Where in the world?</h3>
         <div className="header__container-darkmode">
           <img src={regularMoon} alt="moon" />
           <h3>Dark Mode</h3>

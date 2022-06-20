@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { CountryContextProvider } from "./Context/Country";
 import Countries from "./containers/Countries";
 import Layout from "./containers/Layout";
+import Country from "./components/Country";
 
 function App() {
   return (
@@ -11,6 +12,8 @@ function App() {
         <Layout>
           <Routes>
             <Route path="/" element={<Countries />} />
+
+            <Route path="/country/:id" element={<Country />} />
           </Routes>
         </Layout>
       </CountryContextProvider>
