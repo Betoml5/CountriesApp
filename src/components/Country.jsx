@@ -34,6 +34,10 @@ const Country = () => {
     getCountry();
   }, []);
 
+  if (!country) {
+    return <p>Loading...</p>;
+  }
+
   return (
     <div className="countryDetails__container">
       <div className="countryDetails__container-backBtn">
@@ -42,11 +46,26 @@ const Country = () => {
       </div>
 
       <div className="countryDetails__container-data">
-        <img src={country.flags.png} alt={country.name.common} />
+        <img src={country.flags?.png} alt={country.name?.common} />
         <div>
-          <h3>{country.name.common}</h3>
+          <h3>{country.name?.common}</h3>
           <div>
-            <p>Native Name: {country.name.nativeName.deu.common}</p>
+            <p>Native Name: {country.name?.nativeName.deu?.common}</p>
+            <p>
+              Population:{" "}
+              {country?.population
+                .toString()
+                .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+            </p>
+            <p>Region: {country?.region}</p>
+            <p>Sub region: {country?.subregion}</p>
+            <p>Capital: {country?.capital}</p>
+          </div>
+
+          <div>
+            <p>Top Level Domain: </p>
+            <p>Curriencies: </p>
+            <p>Languages</p>
           </div>
         </div>
       </div>
