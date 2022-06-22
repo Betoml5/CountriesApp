@@ -38,6 +38,10 @@ const Country = () => {
     return <p>Loading...</p>;
   }
 
+  console.log(Object.values(country.currencies));
+
+  const currencies = Object.values(country.currencies);
+
   return (
     <div className="countryDetails__container">
       <div className="countryDetails__container-backBtn">
@@ -54,8 +58,8 @@ const Country = () => {
             <p>
               Population:{" "}
               {country?.population
-                .toString()
-                .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+                ?.toString()
+                ?.replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
             </p>
             <p>Region: {country?.region}</p>
             <p>Sub region: {country?.subregion}</p>
@@ -63,8 +67,21 @@ const Country = () => {
           </div>
 
           <div>
-            <p>Top Level Domain: </p>
-            <p>Curriencies: </p>
+            <p>
+              Top Level Domain:{" "}
+              {country?.tld?.map((item) => (
+                <span>{item}</span>
+              ))}
+            </p>
+            <p>
+              Currencies:{" "}
+              {currencies.map((item) => (
+                <span>
+                  {item.symbol} {item.name}
+                </span>
+              ))}
+            </p>
+
             <p>Languages</p>
           </div>
         </div>
