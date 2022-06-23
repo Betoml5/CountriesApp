@@ -1,4 +1,4 @@
-const API_BASE = "https://restcountries.com/v3.1";
+const API_BASE = "https://restcountries.com/v2";
 
 export const getAllCountriesAPI = async () => {
   try {
@@ -22,7 +22,7 @@ export const getCountryByNameAPI = async (name) => {
 
 export const getCountryByRegionAPI = async (region) => {
   try {
-    const response = await fetch(`${API_BASE}/region/${region}`);
+    const response = await fetch(`${API_BASE}/regionbloc/${region}`);
     const data = await response.json();
     return data;
   } catch (error) {

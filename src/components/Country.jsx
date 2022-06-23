@@ -21,7 +21,6 @@ const Country = () => {
         setError(true);
         return;
       }
-      console.log(response);
       setCountry(response[0]);
     } catch (error) {
       setLoading(false);
@@ -34,36 +33,38 @@ const Country = () => {
     getCountry();
   }, []);
 
-  if (!country) {
-    return <p>Loading...</p>;
-  }
-
-  console.log(Object.values(country.currencies));
-
-  const currencies = Object.values(country.currencies);
+  console.log(id);
 
   return (
     <div className="countryDetails__container">
-      <div className="countryDetails__container-backBtn">
+      {/* <div className="countryDetails__container-backBtn">
         <img src={arrowBackIcon} alt="arrow-back" />
         <p>Back</p>
       </div>
 
       <div className="countryDetails__container-data">
         <img src={country.flags?.png} alt={country.name?.common} />
-        <div>
+        <div className="countryDetails__container-data-wrapper">
           <h3>{country.name?.common}</h3>
           <div>
             <p>Native Name: {country.name?.nativeName.deu?.common}</p>
             <p>
               Population:{" "}
-              {country?.population
-                ?.toString()
-                ?.replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+              <span>
+                {country?.population
+                  ?.toString()
+                  ?.replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+              </span>
             </p>
-            <p>Region: {country?.region}</p>
-            <p>Sub region: {country?.subregion}</p>
-            <p>Capital: {country?.capital}</p>
+            <p>
+              Region: <span>{country?.region}</span>
+            </p>
+            <p>
+              Sub region: <span>{country?.subregion}</span>
+            </p>
+            <p>
+              Capital: <span>{country?.capital}</span>
+            </p>
           </div>
 
           <div>
@@ -73,19 +74,21 @@ const Country = () => {
                 <span>{item}</span>
               ))}
             </p>
-            <p>
-              Currencies:{" "}
-              {currencies.map((item) => (
-                <span>
-                  {item.symbol} {item.name}
-                </span>
-              ))}
-            </p>
+            <p>Currencies: </p>
 
-            <p>Languages</p>
+            <p>Languages: </p>
+          </div>
+
+          <div className="country__boders">
+            <h4>Border Countries:</h4>
+            <div>
+              {country?.borders?.map((item) => (
+                <p>{item}</p>
+              ))}
+            </div>
           </div>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 };
