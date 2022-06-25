@@ -50,7 +50,7 @@ const Countries = () => {
       {countries?.map((country) => (
         <Link to={`/country/${country.alpha2Code}`} className="country__link">
           <div className="container__country">
-            <img src={country.flags.png} alt={country.name} loading="lazy" />
+            <img src={country.flags.svg} alt={country.name} loading="lazy" />
             <div className="container__country-data">
               <h3>{country.name.common}</h3>
               <p>

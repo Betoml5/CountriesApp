@@ -1,7 +1,7 @@
 import React from "react";
 import { useEffect } from "react";
 import { useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { getCountryByCodeAPI } from "../services/Country";
 import arrowBackIcon from "../assets/images/back.png";
 import "../styles/components/Country.css";
@@ -12,6 +12,8 @@ const Country = () => {
   const [error, setError] = useState(false);
   const { id } = useParams();
 
+  const navigate = useNavigate();
+
   const getCountry = async () => {
     try {
       setLoading(true);
@@ -21,7 +23,8 @@ const Country = () => {
         setError(true);
         return;
       }
-      setCountry(response[0]);
+
+      setCountry(response);
     } catch (error) {
       setLoading(false);
       setError(true);
@@ -33,62 +36,79 @@ const Country = () => {
     getCountry();
   }, []);
 
-  console.log(id);
-
   return (
     <div className="countryDetails__container">
-      {/* <div className="countryDetails__container-backBtn">
+      <div
+        className="countryDetails__container-backBtn"
+        onClick={() => navigate("/")}
+      >
         <img src={arrowBackIcon} alt="arrow-back" />
         <p>Back</p>
       </div>
 
       <div className="countryDetails__container-data">
-        <img src={country.flags?.png} alt={country.name?.common} />
+        <img src={country.flags?.svg} alt={country.name?.common} />
         <div className="countryDetails__container-data-wrapper">
-          <h3>{country.name?.common}</h3>
-          <div>
-            <p>Native Name: {country.name?.nativeName.deu?.common}</p>
-            <p>
-              Population:{" "}
-              <span>
-                {country?.population
-                  ?.toString()
-                  ?.replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
-              </span>
-            </p>
-            <p>
-              Region: <span>{country?.region}</span>
-            </p>
-            <p>
-              Sub region: <span>{country?.subregion}</span>
-            </p>
-            <p>
-              Capital: <span>{country?.capital}</span>
-            </p>
-          </div>
+          <h3>{country.name}</h3>
+          <div className="countryDetails__container-wrapper">
+            <div>
+              <p>Native Name: {country.nativeName}</p>
+              <p>
+                Population:{" "}
+                <span>
+                  {country?.population
+                    ?.toString()
+                    ?.replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+                </span>
+              </p>
+              <p>
+                Region: <span>{country?.region}</span>
+              </p>
+              <p>
+                Sub region: <span>{country?.subregion}</span>
+              </p>
+              <p>
+                Capital: <span>{country?.capital}</span>
+              </p>
+            </div>
 
-          <div>
-            <p>
-              Top Level Domain:{" "}
-              {country?.tld?.map((item) => (
-                <span>{item}</span>
-              ))}
-            </p>
-            <p>Currencies: </p>
+            <div>
+              <p>
+                Top Level Domain:{" "}
+                {country?.topLevelDomain?.map((item) => (
+                  <span>{item}</span>
+                ))}
+              </p>
+              <p className="country__currencies">
+                Currencies:{" "}
+                {country?.currencies?.map((item) => (
+                  <span>{item.name}</span>
+                ))}
+              </p>
 
-            <p>Languages: </p>
+              <p className="country__languages">
+                Languages:{" "}
+                {country?.languages?.map((item) => (
+                  <span>{item.name}</span>
+                ))}
+              </p>
+            </div>
           </div>
 
           <div className="country__boders">
             <h4>Border Countries:</h4>
-            <div>
-              {country?.borders?.map((item) => (
-                <p>{item}</p>
-              ))}
-            </div>
+            {country?.borders?.length === 0 ? (
+              <span>There is no country borders</span>
+            ) : (
+              <div>
+                {country?.borders?.map((item) => (
+                  <p>{item}</p>
+                ))}
+              </div>
+            )}
           </div>
         </div>
-      </div> */}
+      </div>
     </div>
   );
 };
