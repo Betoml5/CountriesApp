@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-const Context = React.createContext({});
+export const Context = React.createContext({});
 
 export function CountryContextProvider({ children }) {
   const [darkMode, setDarkMode] = useState(false);

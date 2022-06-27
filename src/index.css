@@ -10,3 +10,17 @@ html {
   font-size: 68.5%;
   font-family: "Nunito Sans", sans-serif;
 }
+
+.darkModeBody {
+  background-color: hsl(207, 26%, 17%);
+  color: hsl(0, 0%, 100%);
+}
+
+.darkModeElement {
+  background-color: hsl(209, 23%, 22%);
+  color: hsl(0, 0%, 100%);
+}
+
+.darkModeText {
+  color: hsl(0, 0%, 100%);
+}

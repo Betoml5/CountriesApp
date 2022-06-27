@@ -4,6 +4,8 @@ import searchIcon from "../assets/images/search.svg";
 
 import "../styles/containers/Countries.css";
 import { Link } from "react-router-dom";
+import { useContext } from "react";
+import { Context } from "../Context/Country";
 
 const Countries = () => {
   const [countries, setCountries] = useState([]);
@@ -11,6 +13,8 @@ const Countries = () => {
   const [error, setError] = useState(false);
   const [name, setName] = useState("");
   const [searchedCountries, setSearchedCountries] = useState([]);
+
+  const { darkMode } = useContext(Context);
 
   const getAllCountries = async () => {
     try {
@@ -56,7 +60,7 @@ const Countries = () => {
   }, []);
 
   return (
-    <div className="container">
+    <div className={`${darkMode && "darkModeBody"} container`}>
       <div className="container__search">
         <input
           type="text"
@@ -73,8 +77,8 @@ const Countries = () => {
         />
         <img src={searchIcon} alt="search icon" />
       </div>
-      <div className="container__select">
-        <select>
+      <div className={`${darkMode && "darkModeBody"} container__select`}>
+        <select className={`${darkMode && "darkModeBody"} container__select`}>
           <option disabled>Filter by Region</option>
           <option>Africa</option>
           <option>America</option>
@@ -87,7 +91,7 @@ const Countries = () => {
         ? searchedCountries?.map((country) => (
             <Link
               to={`/country/${country.alpha2Code}`}
-              className="country__link"
+              className={`${darkMode && "darkModeElement"} country__link`}
             >
               <div className="container__country">
                 <img
@@ -119,7 +123,7 @@ const Countries = () => {
           countries?.map((country) => (
             <Link
               to={`/country/${country.alpha2Code}`}
-              className="country__link"
+              className={`${darkMode && "darkModeElement"} `}
             >
               <div className="container__country">
                 <img
