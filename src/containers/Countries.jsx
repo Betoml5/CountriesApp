@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { getAllCountriesAPI } from "../services/Country";
+import { getAllCountriesAPI, getCountryByNameAPI } from "../services/Country";
 import searchIcon from "../assets/images/search.svg";
 
 import "../styles/containers/Countries.css";
@@ -9,6 +9,7 @@ const Countries = () => {
   const [countries, setCountries] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
+  const [name, setName] = useState("");
 
   const getAllCountries = async () => {
     try {
@@ -19,13 +20,18 @@ const Countries = () => {
         setError(true);
         return;
       }
-      console.log(response);
       setCountries(response);
     } catch (error) {
       setLoading(false);
       setError(true);
       throw error;
     }
+  };
+
+  const onSearch = async (name) => {
+    try {
+      const response = await getCountryByNameAPI(name);
+    } catch (error) {}
   };
 
   useEffect(() => {
