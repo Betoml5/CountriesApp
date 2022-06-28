@@ -21,6 +21,8 @@
 .header__container-darkmode {
   display: flex;
   align-items: center;
+
+  cursor: pointer;
 }
 
 .header__container-darkmode img {

@@ -1,5 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { getAllCountriesAPI, getCountryByNameAPI } from "../services/Country";
+import {
+  getAllCountriesAPI,
+  getCountryByNameAPI,
+  getCountryByRegionAPI,
+} from "../services/Country";
 import searchIconBlack from "../assets/images/search-black.png";
 import searchIconWhite from "../assets/images/search-white.png";
 
@@ -13,6 +17,7 @@ const Countries = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
   const [name, setName] = useState("");
+  const [region, setRegion] = useState("");
   const [searchedCountries, setSearchedCountries] = useState([]);
 
   const { darkMode } = useContext(Context);
@@ -37,12 +42,10 @@ const Countries = () => {
   const onSearch = async (name) => {
     try {
       const response = await getCountryByNameAPI(name);
-
       if (!response) {
         setLoading(false);
         setError(true);
         setSearchedCountries([]);
-
         return;
       }
 
@@ -51,7 +54,25 @@ const Countries = () => {
       setLoading(false);
       setError(true);
       setSearchedCountries([]);
-      console.log(error);
+      throw error;
+    }
+  };
+
+  const onSelectChange = async (region) => {
+    try {
+      const response = await getCountryByRegionAPI(region);
+      if (!response) {
+        setLoading(false);
+        setError(true);
+        setSearchedCountries([]);
+        return;
+      }
+
+      setSearchedCountries(response);
+    } catch (error) {
+      setLoading(false);
+      setError(true);
+      setSearchedCountries([]);
       throw error;
     }
   };
@@ -85,12 +106,15 @@ const Countries = () => {
       <div className={`${darkMode && "darkModeElement"} container__select`}>
         <select
           className={`${darkMode && "darkModeElement"} container__select`}
+          onChange={(e) => {
+            onSelectChange(e.target.value);
+          }}
         >
           <option disabled>Filter by Region</option>
-          <option>Africa</option>
-          <option>America</option>
-          <option>Europe</option>
-          <option>Oceania</option>
+          <option value="africa">Africa</option>
+          <option value="americas">America</option>
+          <option value="europe">Europe</option>
+          <option value="oceania">Oceania</option>
         </select>
       </div>
 

@@ -12,6 +12,7 @@
 .country__link {
   height: 100%;
   text-decoration: none;
+  color: #000;
 }
 
 .country__link:visited {
