@@ -1,15 +1,19 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useEffect } from "react";
 import { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { getCountryByCodeAPI } from "../services/Country";
-import arrowBackIcon from "../assets/images/back.png";
+import arrowBackIconBlack from "../assets/images/arrow-back-black.png";
+import arrowBackIconWhite from "../assets/images/arrow-back-white.png";
+
 import "../styles/components/Country.css";
+import { Context } from "../Context/Country";
 
 const Country = () => {
   const [country, setCountry] = useState({});
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
+  const { darkMode } = useContext(Context);
   const { id } = useParams();
 
   const navigate = useNavigate();
@@ -37,12 +41,15 @@ const Country = () => {
   }, []);
 
   return (
-    <div className="countryDetails__container">
+    <div className={`${darkMode && "darkModeBody"} countryDetails__container `}>
       <div
         className="countryDetails__container-backBtn"
         onClick={() => navigate("/")}
       >
-        <img src={arrowBackIcon} alt="arrow-back" />
+        <img
+          src={`${darkMode ? arrowBackIconWhite : arrowBackIconBlack}`}
+          alt="arrow-back"
+        />
         <p>Back</p>
       </div>
 
