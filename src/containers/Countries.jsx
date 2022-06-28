@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { getAllCountriesAPI, getCountryByNameAPI } from "../services/Country";
-import searchIcon from "../assets/images/search.svg";
+import searchIconBlack from "../assets/images/search-black.png";
+import searchIconWhite from "../assets/images/search-white.png";
 
 import "../styles/containers/Countries.css";
 import { Link } from "react-router-dom";
@@ -61,10 +62,11 @@ const Countries = () => {
 
   return (
     <div className={`${darkMode && "darkModeBody"} container`}>
-      <div className="container__search">
+      <div className={`${darkMode && "darkModeElement"} container__search`}>
         <input
           type="text"
           placeholder="Search for a country"
+          className={`${darkMode && "darkModeElement"}`}
           onChange={(e) => {
             if (e.target.value === "") {
               setSearchedCountries(countries);
@@ -75,10 +77,15 @@ const Countries = () => {
             e.key === "Enter" && onSearch(name);
           }}
         />
-        <img src={searchIcon} alt="search icon" />
+        <img
+          src={`${darkMode ? searchIconWhite : searchIconBlack}`}
+          alt="search icon"
+        />
       </div>
-      <div className={`${darkMode && "darkModeBody"} container__select`}>
-        <select className={`${darkMode && "darkModeBody"} container__select`}>
+      <div className={`${darkMode && "darkModeElement"} container__select`}>
+        <select
+          className={`${darkMode && "darkModeElement"} container__select`}
+        >
           <option disabled>Filter by Region</option>
           <option>Africa</option>
           <option>America</option>
@@ -123,7 +130,7 @@ const Countries = () => {
           countries?.map((country) => (
             <Link
               to={`/country/${country.alpha2Code}`}
-              className={`${darkMode && "darkModeElement"} `}
+              className={`${darkMode && "darkModeElement"}  country__link`}
             >
               <div className="container__country">
                 <img

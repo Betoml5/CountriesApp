@@ -1,6 +1,8 @@
 import React from "react";
 import { useContext } from "react";
-import regularMoon from "../assets/images/moon-regular.svg";
+import blackMoon from "../assets/images/moon-black.png";
+import whiteMoon from "../assets/images/moon-white.png";
+
 import "../styles/components/Header.css";
 import { Context } from "../Context/Country";
 const Header = () => {
@@ -16,7 +18,7 @@ const Header = () => {
             setDarkMode(!darkMode);
           }}
         >
-          <img src={regularMoon} alt="moon" />
+          <img src={`${darkMode ? whiteMoon : blackMoon}`} alt="moon" />
           <h3>Dark Mode</h3>
         </div>
       </div>
