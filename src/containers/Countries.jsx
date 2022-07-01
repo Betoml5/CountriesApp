@@ -93,10 +93,11 @@ const Countries = () => {
               setSearchedCountries(countries);
             }
             setName(e.target.value);
+            onSearch(name);
           }}
-          onKeyDown={(e) => {
-            e.key === "Enter" && onSearch(name);
-          }}
+          // onKeyDown={(e) => {
+          //   e.key === "Enter" && onSearch(name);
+          // }}
         />
         <img
           src={`${darkMode ? searchIconWhite : searchIconBlack}`}
